@@ -39,7 +39,7 @@ void usertask(void)
 {
 	print_str("usertask: 1st call of usertask!\n");
 	print_str("usertask: Now, return to kernel mode\n");
-	syscall();
+	syscall(); //系統呼叫  在使用者行程中 再進行呼叫 EX 輸出入切換
 	print_str("usertask: 2nd call of usertask!\n");
 	print_str("usertask: Now, return to kernel mode\n");
 	syscall();

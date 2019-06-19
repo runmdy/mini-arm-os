@@ -42,20 +42,20 @@ extern uint32_t _estack;
 void rcc_clock_init(void);
 
 void reset_handler(void)
-{
+{  
 	/* Copy the data segment initializers from flash to SRAM */
-	uint32_t *idata_begin = &_sidata;
+	uint32_t *idata_begin = &_sidata;   //在起始時就分配空間給data段
 	uint32_t *data_begin = &_sdata;
 	uint32_t *data_end = &_edata;
 	while (data_begin < data_end) *data_begin++ = *idata_begin++;
 
 	/* Zero fill the bss segment. */
-	uint32_t *bss_begin = &_sbss;
+	uint32_t *bss_begin = &_sbss;     
 	uint32_t *bss_end = &_ebss;
-	while (bss_begin < bss_end) *bss_begin++ = 0;
+	while (bss_begin < bss_end) *bss_begin++ = 0;  //沒初始化的資料因此在這邊全部塞入0
 
 	/* Clock system intitialization */
-	rcc_clock_init();
+	rcc_clock_init();   //作時間中斷
 
 	main();
 }
@@ -72,10 +72,10 @@ void hardfault_handler(void)
 
 __attribute((section(".isr_vector")))
 uint32_t *isr_vectors[] = {
-	(uint32_t *) &_estack,		/* stack pointer */
-	(uint32_t *) reset_handler,	/* code entry point */
-	(uint32_t *) nmi_handler,	/* NMI handler */
-	(uint32_t *) hardfault_handler	/* hard fault handler */
+	(uint32_t *) &_estack,		/* stack pointer */  //堆疊指標
+	(uint32_t *) reset_handler,	/* code entry point */  //重開機中斷
+	(uint32_t *) nmi_handler,	/* NMI handler */  //(Non-maskable interrupt) 非遮罩中斷
+	(uint32_t *) hardfault_handler	/* hard fault handler */  //硬體錯誤中斷
 };
 
 void rcc_clock_init(void)

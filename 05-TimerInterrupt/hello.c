@@ -41,7 +41,7 @@ void main(void)
 	print_str("Hello world!\n");
 
 	/* SysTick configuration */
-	*SYSTICK_LOAD = 7200000;
+	*SYSTICK_LOAD = 7200000; //時間中斷長度
 	*SYSTICK_VAL = 0;
 	*SYSTICK_CTRL = 0x07;
 

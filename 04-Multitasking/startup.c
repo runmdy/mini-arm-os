@@ -76,16 +76,16 @@ __attribute((section(".isr_vector")))
 uint32_t *isr_vectors[] = {
 	(uint32_t *) &_estack,			/* stack pointer */
 	(uint32_t *) reset_handler,		/* code entry point */
-	(uint32_t *) nmi_handler,		/* NMI handler */
-	(uint32_t *) hardfault_handler,		/* hard fault handler */
-	(uint32_t *) memmanage_handler,		/* mem manage handler */
-	(uint32_t *) busfault_handler,		/* bus fault handler */
-	(uint32_t *) usagefault_handler,	/* usage fault handler */
+	(uint32_t *) nmi_handler,		/* NMI handler */ 
+	(uint32_t *) hardfault_handler,		/* hard fault handler硬體錯誤中斷 */
+	(uint32_t *) memmanage_handler,		/* mem manage handler 記憶體管理中斷*/
+	(uint32_t *) busfault_handler,		/* bus fault handler 匯流排中斷*/
+	(uint32_t *) usagefault_handler,	/* usage fault handler 使用錯誤中斷*/
 	0,
 	0,
 	0,
 	0,
-	(uint32_t *) svc_handler,		/* svc handler */
+	(uint32_t *) svc_handler,		/* svc handler 軟體中斷 */
 };
 
 void rcc_clock_init(void)

@@ -37,14 +37,14 @@ void print_str(const char *str)
 
 void usertask(void)
 {
-	print_str("User Task #1\n");
+	print_str("User Task #1\n"); 
 	while (1); /* Never terminate the task */
 }
 
 int main(void)
 {
 	/* Initialization of process stack.
-	 * r4, r5, r6, r7, r8, r9, r10, r11, lr */
+	 * r4, r5, r6, r7, r8, r9, r10, r11, lr */  //建立使用者的堆疊
 	unsigned int usertask_stack[256];
 	unsigned int *usertask_stack_start = usertask_stack + 256 - 16;
 	usertask_stack_start[8] = (unsigned int) &usertask;
@@ -52,7 +52,7 @@ int main(void)
 	usart_init();
 
 	print_str("OS Starting...\n");
-	activate(usertask_stack_start);
+	activate(usertask_stack_start); //類似thread的東西 這句是組合語言 會跳至 context_switch.s那邊
 
 	while (1); /* We can't exit, there is nowhere to go */
 

@@ -1,5 +1,5 @@
 CROSS_COMPILE ?= arm-none-eabi-
-CC := $(CROSS_COMPILE)gcc
+CC := $(CROSS_COMPILE)gcc 
 CFLAGS = -fno-common -O0 \
 	 -mcpu=cortex-m3 -mthumb \
 	 -T hello.ld -nostartfiles \
@@ -9,7 +9,7 @@ all: $(TARGET)
 
 $(TARGET): hello.c startup.c
 	$(CC) $(CFLAGS) $^ -o hello.elf
-	$(CROSS_COMPILE)objcopy -Obinary hello.elf hello.bin
+	$(CROSS_COMPILE)objcopy -Obinary hello.elf hello.bin  
 	$(CROSS_COMPILE)objdump -S hello.elf > hello.list
 
 qemu: $(TARGET)

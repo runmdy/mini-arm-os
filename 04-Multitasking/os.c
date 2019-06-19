@@ -53,7 +53,7 @@ void print_str(const char *str)
  * http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html
  */
 unsigned int *create_task(unsigned int *stack, void (*start)(void))
-{
+{  //建立task 在切換至activate 並先準備好堆疊資料
 	stack += STACK_SIZE - 17; /* End of stack, minus what we are about to push */
 	stack[8] = (unsigned int) THREAD_PSP;
 	stack[15] = (unsigned int) start;

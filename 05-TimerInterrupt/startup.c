@@ -71,8 +71,8 @@ void memmanage_handler(void) __attribute((weak, alias("default_handler")));
 void busfault_handler(void) __attribute((weak, alias("default_handler")));
 void usagefault_handler(void) __attribute((weak, alias("default_handler")));
 void svc_handler(void) __attribute((weak, alias("default_handler")));
-void pendsv_handler(void) __attribute((weak, alias("default_handler")));
-void systick_handler(void) __attribute((weak, alias("default_handler")));
+void pendsv_handler(void) __attribute((weak, alias("default_handler"))); //可掛式中斷 自動延遲中斷
+void systick_handler(void) __attribute((weak, alias("default_handler"))); //時間中斷
 
 __attribute((section(".isr_vector")))
 uint32_t *isr_vectors[] = {

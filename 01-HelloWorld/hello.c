@@ -15,7 +15,7 @@
  * because string literal is in .rodata region and is put 
  * under the .text region by the linker script
  */
-static char greet[] = "Hello World!\n";
+static char greet[] = "Hello World!\n";  //有靜態變數區
 
 void print_str(const char *str)
 {
